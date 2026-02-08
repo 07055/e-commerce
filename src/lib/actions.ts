@@ -8,37 +8,6 @@ import { writeFile } from 'fs/promises'
 import { cookies } from 'next/headers'
 import path from 'path'
 
-export async function registerUser(formData: FormData) {
-    const name = formData.get('name') as string
-    const email = formData.get('email') as string
-    const password = formData.get('password') as string
-    const shopName = formData.get('shopName') as string
-
-    if (!name || !email || !password) {
-        throw new Error('Missing fields')
-    }
-
-    const shopSlug = shopName?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') || email.split('@')[0]
-
-    try {
-        await prisma.user.create({
-            data: {
-                name,
-                email,
-                password, // In production, hash this!
-                shopName,
-                shopSlug,
-                role: 'SELLER'
-            }
-        })
-    } catch (e) {
-        console.error('Registration failed:', e)
-        throw new Error('Email or Shop Slug already exists')
-    }
-
-    redirect('/login')
-}
-
 export async function loginUser(formData: FormData) {
     const email = formData.get('email') as string
     const password = formData.get('password') as string
@@ -60,7 +29,7 @@ export async function loginUser(formData: FormData) {
         path: '/',
     })
 
-    redirect('/sell')
+    redirect('/')
 }
 
 export async function logoutUser() {
@@ -75,6 +44,12 @@ export async function createProduct(formData: FormData) {
 
     if (!userId) {
         redirect('/login')
+    }
+
+    // Checking if user is Admin (simplified for single store)
+    const user = await prisma.user.findUnique({ where: { id: userId } })
+    if (user?.role !== 'ADMIN') {
+        throw new Error('Unauthorized')
     }
 
     const name = formData.get('name') as string
@@ -116,7 +91,6 @@ export async function createProduct(formData: FormData) {
                 stock,
                 category,
                 images: imageUrl,
-                sellerId: userId
             }
         })
     } catch (error) {

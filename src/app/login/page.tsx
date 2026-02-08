@@ -5,7 +5,7 @@ export default function LoginPage() {
         <div className="container" style={{ padding: '8rem 0', maxWidth: '400px' }}>
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
                 <h4 className="uppercase text-gold" style={{ marginBottom: '1rem' }}>Access</h4>
-                <h1>Seller Login</h1>
+                <h1>Admin Login</h1>
             </div>
 
             <form action={loginUser} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -47,10 +47,6 @@ export default function LoginPage() {
                 >
                     Sign In
                 </button>
-
-                <p style={{ textAlign: 'center', fontSize: '0.9rem', color: '#666', marginTop: '1rem' }}>
-                    New artisan? <a href="/register">Join the collective</a>
-                </p>
             </form>
         </div>
     );

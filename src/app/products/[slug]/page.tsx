@@ -71,14 +71,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                         </div>
                     </div>
 
-                    <div className="section-card">
-                        <h3 style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '1rem' }}>SELLER INFORMATION</h3>
-                        <div style={{ fontSize: '0.8rem' }}>
-                            <p style={{ fontWeight: '700' }}>JStore Marketplace</p>
-                            <p>85% Seller Score</p>
-                            <p>120 Followers</p>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 

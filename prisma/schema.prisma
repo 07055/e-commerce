@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
 }
 
 model User {
@@ -12,17 +12,13 @@ model User {
   password      String
   name          String?
   role          Role      @default(USER)
-  shopName      String?
-  shopSlug      String?   @unique
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   orders        Order[]
-  products      Product[]
 }
 
 enum Role {
   USER
-  SELLER
   ADMIN
 }
 
@@ -38,8 +34,6 @@ model Product {
   featured    Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  seller      User?    @relation(fields: [sellerId], references: [id])
-  sellerId    String?
   orderItems  OrderItem[]
 }
 

@@ -14,7 +14,6 @@ export default async function Header() {
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between' }}>
           <span>📞 Call us: <strong>+254 700 123 456</strong> | Free delivery on millions of items</span>
           <div style={{ display: 'flex', gap: '1.5rem' }}>
-            <Link href="/sell">Sell on JStore</Link>
             <span>Quality Guarantee</span>
           </div>
         </div>
