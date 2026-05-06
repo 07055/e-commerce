@@ -1,22 +1,14 @@
 import { PrismaClient } from '@prisma/client'
-import { PrismaLibSql } from '@prisma/adapter-libsql'
-import path from 'path'
+import { PrismaPg } from '@prisma/adapter-pg'
+import { Pool } from 'pg'
 
 const globalForPrisma = global as unknown as { prisma: PrismaClient }
 
-// Absolute path to the database file
-const dbPath = path.join(process.cwd(), 'dev.db')
-const url = 'file:' + dbPath
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+})
 
-// Force environment variable for internal Prisma 7 checks
-process.env.DATABASE_URL = url
-
-console.log('[Prisma Init] URL:', url)
-console.log('[Prisma Init] CWD:', process.cwd())
-
-// In this version of @prisma/adapter-libsql, it expects the config object
-// which includes the 'url' property.
-const adapter = new PrismaLibSql({ url })
+const adapter = new PrismaPg(pool)
 
 export const prisma =
     globalForPrisma.prisma ||

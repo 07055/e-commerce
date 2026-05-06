@@ -9,7 +9,8 @@ export default function Hero() {
                     alt="Main Sale Banner"
                 />
                 <div className={styles.overlay}>
-                    <h2>FLASH DEALS</h2>
+                    <h1 style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>Sam's Suma Mart (SSM)</h1>
+                    <h2>Official Number 1 App Distributor of BF Suma Products</h2>
                     <button className="btn-primary">SHOP NOW</button>
                 </div>
             </div>

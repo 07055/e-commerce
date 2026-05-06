@@ -38,8 +38,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
                         <h1 style={{ fontSize: '1.5rem', fontWeight: '400', marginBottom: '1rem' }}>{product.name}</h1>
                         <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '1rem' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                <span style={{ fontSize: '1.8rem', fontWeight: '700' }}>${product.price.toLocaleString()}</span>
-                                <span style={{ textDecoration: 'line-through', color: 'var(--secondary-text)' }}>${oldPrice.toLocaleString()}</span>
+                                <span style={{ fontSize: '1.8rem', fontWeight: '700' }}>KSh {product.price.toLocaleString()}</span>
+                                <span style={{ textDecoration: 'line-through', color: 'var(--secondary-text)' }}>KSh {oldPrice.toLocaleString()}</span>
                                 <span className="badge-orange">-25%</span>
                             </div>
                             <p style={{ color: 'var(--success)', fontSize: '0.8rem', marginTop: '0.5rem' }}>In Stock</p>

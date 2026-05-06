@@ -31,8 +31,8 @@ export default function ProductCard({ product }: { product: Product }) {
             <div className={styles.details}>
                 <div className={styles.name}>{product.name}</div>
                 <div className={styles.priceContainer}>
-                    <span className={styles.priceNew}>${product.price.toLocaleString()}</span>
-                    <span className={styles.priceOld}>${oldPrice.toLocaleString()}</span>
+                    <span className={styles.priceNew}>KSh {product.price.toLocaleString()}</span>
+                    <span className={styles.priceOld}>KSh {oldPrice.toLocaleString()}</span>
                 </div>
                 <div className={styles.rating}>
                     ★★★★★ <span style={{ fontSize: '0.7rem', color: '#757575' }}>(12)</span>

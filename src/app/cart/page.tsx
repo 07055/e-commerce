@@ -45,7 +45,7 @@ export default function CartPage() {
                             <div style={{ flex: 1 }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
                                     <h3 style={{ fontSize: '0.9rem', fontWeight: '400' }}>{item.name}</h3>
-                                    <p style={{ fontSize: '1.1rem', fontWeight: '700' }}>${(item.price * item.quantity).toLocaleString()}</p>
+                                    <p style={{ fontSize: '1.1rem', fontWeight: '700' }}>KSh {(item.price * item.quantity).toLocaleString()}</p>
                                 </div>
 
                                 <p style={{ fontSize: '0.75rem', color: 'var(--jumia-orange)', marginBottom: '1rem' }}>Only 5 units left</p>
@@ -86,12 +86,12 @@ export default function CartPage() {
                         <h2 style={{ fontSize: '1rem', borderBottom: '1px solid var(--border-light)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>CART SUMMARY</h2>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
                             <span>Subtotal</span>
-                            <span style={{ fontSize: '1.2rem', fontWeight: '700' }}>${cartTotal.toLocaleString()}</span>
+                            <span style={{ fontSize: '1.2rem', fontWeight: '700' }}>KSh {cartTotal.toLocaleString()}</span>
                         </div>
                         <p style={{ fontSize: '0.7rem', color: 'var(--secondary-text)', marginBottom: '1.5rem' }}>Delivery fees not included yet.</p>
-                        <button className="btn-primary" style={{ width: '100%', padding: '1rem' }}>
+                        <Link href="/checkout" className="btn-primary" style={{ width: '100%', padding: '1rem', display: 'block', textAlign: 'center', textDecoration: 'none' }}>
                             CHECKOUT (${cartTotal.toLocaleString()})
-                        </button>
+                        </Link>
                     </div>
 
                     <div className="section-card" style={{ fontSize: '0.8rem' }}>

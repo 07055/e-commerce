@@ -3,12 +3,13 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
 model User {
   id            String    @id @default(cuid())
   email         String    @unique
+  phone         String?
   password      String
   name          String?
   role          Role      @default(USER)
@@ -38,15 +39,33 @@ model Product {
 }
 
 model Order {
-  id          String      @id @default(cuid())
-  user        User?       @relation(fields: [userId], references: [id])
-  userId      String?
-  items       OrderItem[]
-  total       Float
-  status      OrderStatus @default(PENDING)
-  address     String?
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id              String        @id @default(cuid())
+  user            User?         @relation(fields: [userId], references: [id])
+  userId          String?
+  items           OrderItem[]
+  total           Float
+  status          OrderStatus   @default(PENDING)
+  address         String?
+  phone           String?
+  city            String?
+  deliveryNotes   String?
+  paymentMethod   PaymentMethod @default(PAYSTACK)
+  paymentStatus   PaymentStatus @default(UNPAID)
+  transactionRef  String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
+
+enum PaymentMethod {
+  PAYSTACK
+  CASH_ON_DELIVERY
+}
+
+enum PaymentStatus {
+  UNPAID
+  PENDING
+  PAID
+  FAILED
 }
 
 enum OrderStatus {
